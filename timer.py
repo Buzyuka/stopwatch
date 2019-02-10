@@ -55,6 +55,26 @@ def stop_sw():
     root.after_cancel(AFTER_ID)
 
 
+'''Функция для кнопки "Продолжить". '''
+
+def continue_sw():
+    btn3.grid_forget() # Прячем кнопку
+    btn4.grid_forget() # Прячем кнопку
+    btn2.grid(row=1, columnspan=2, sticky="ew") # Отображаем кнопку "Старт"
+    tick() # Вызываем функцию tick
+
+'''Функция для кнопки "Сбросить". В этой функции мы сбрасываем счетчик секунд TEMP
+, поэтому объявляем глобальную переменную TEMP и сбрасываем ее присваивая значение 0'''
+
+def reset_sw():
+    global TEMP # Объявляем переменную глобальной
+    TEMP = 0 # Сбрасываем переменную
+    label1.configure(text = "00:00") # Задаем текст для переменной TEMP
+    btn3.grid_forget() # Прячем кнопку
+    btn4.grid_forget() # Прячем кнопку
+    btn1.grid(row=1, columnspan=2, sticky="ew") # Отображаем кнопку "Старт"
+
+
 
 # Окно таймера
 
@@ -74,8 +94,8 @@ label1.grid(row = 0, columnspan = 2) # Параметр columnspan задает 
 
 btn1 = Button(root, text = "Старт", font = (FONT, 50), command = start_sw)
 btn2 = Button(root, text = "Стоп", font = (FONT, 50), command = stop_sw)
-btn3 = Button(root, text = "Продолжить", font = (FONT, 50))
-btn4 = Button(root, text = "Сбросить", font = (FONT, 50))
+btn3 = Button(root, text = "Продолжить", font = (FONT, 50), command = continue_sw)
+btn4 = Button(root, text = "Сбросить", font = (FONT, 50), command = reset_sw)
 
 btn1.grid(row = 1, columnspan = 2, sticky = "ew")
 
